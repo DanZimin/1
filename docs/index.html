@@ -1,48 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Don - Все в порядке</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Название] - Планировщик, Календарь и Записная Книжка</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    .block {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      background-color: #f4f4f4;
+    }
+    .header {
+      background-color: #3498db;
+      color: #fff;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+    .header-content, .features-content, .cta-content {
+      width: 50%;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 24px;
+    }
+    .features {
+      background-color: #e74c3c;
+      color: #fff;
+    }
+    .cta {
+      background-color: #2ecc71;
+      color: #fff;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #34495e;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .button:hover {
+      background-color: #2c3e50;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>Don1</h1>
-            <p>111Планировщик, календарь и записная книжка — в одном приложении Don. Вы все успеете и ничего не забудете.</p>
-            <a href="ссылка_на_установку" class="cta-button">Установить</a>
-        </header>
+  <div class="container">
+    <div class="block header">
+      <div class="header-content">
+        <h1>Все в порядке! Планировщик, календарь и записная книжка — в одном приложении [Название]. Вы все успеете и ничего не забудете.</h1>
+        <a href="#" class="button">Установить</a>
+      </div>
     </div>
-
-    <div class="container">
-        <section class="features">
-            <div class="feature">
-                <h2>Избавьтесь от суеты</h2>
-                <p>Разложите дела по полочкам с помощью планировщика. Ставьте цели и разбивайте их на задачи. Делайте чек-листы, чтобы ничего не упустить.</p>
-            </div>
-            <div class="feature">
-                <h2>Разгрузите голову</h2>
-                <p>Доверьте свои мысли заметкам — они всегда будут под рукой. Ваши записи не потеряются — прикрепляйте их к поставленным задачам.</p>
-            </div>
-            <div class="feature">
-                <h2>Освободите время</h2>
-                <p>Ставьте сроки для задач и планируйте длительные проекты. Календарь напомнит о встречах и важных событиях.</p>
-            </div>
-        </section>
+    <div class="block features">
+      <div class="features-content">
+        <div class="slide">
+          <h2>Избавьтесь от суеты.</h2>
+          <p>Разложите дела по полочкам с помощью планировщика. Ставьте цели и разбивайте их на задачи. Делайте чек-листы, чтобы ничего не упустить.</p>
+        </div>
+        <div class="slide">
+          <h2>Разгрузите голову.</h2>
+          <p>Доверьте свои мысли заметкам — они всегда будут под рукой. Ваши записи не потеряются — прикрепляйте их к поставленным задачам.</p>
+        </div>
+        <div class="slide">
+          <h2>Освободите время.</h2>
+          <p>Ставьте сроки для задач и планируйте длительные проекты. Календарь напомнит о встречах и важных событиях.</p>
+        </div>
+      </div>
     </div>
-
-    <div class="container">
-        <section class="call-to-action">
-            <h2>Приведите дела в порядок с помощью Don</h2>
-            <a href="ссылка_на_попробовать" class="cta-button">Попробовать</a>
-        </section>
+    <div class="block cta">
+      <div class="cta-content">
+        <h2>Приведите дела в порядок с помощью [Название].</h2>
+        <a href="#" class="button">Попробовать</a>
+      </div>
     </div>
-
-    <div class="container">
-        <footer>
-            <p>&copy; 2023 Don. Все права защищены.</p>
-        </footer>
-    </div>
+  </div>
 </body>
 </html>
