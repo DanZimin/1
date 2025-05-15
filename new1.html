@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .marquee-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            position: relative;
+            animation: marquee 100s linear infinite;
+        }
+
+        .monkey-emoji {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+		
+		.congrats {
+            font-weight: bold;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(25%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .clickable {
+            color: blue;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        #result {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="marquee-wrapper">
+        <div class="marquee-container">
+            <div class="marquee-content" id="marquee"></div>
+        </div>
+        <div class="monkey-emoji"> &#128018; </div>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        const correctOrder = ['Быть', 'или', 'не быть,', 'вот', 'в чем', 'вопрос.', 'Достойно', 'ль', 'смиряться', 'под', 'ударами', 'судьбы,', 'иль', 'надо', 'оказать', 'сопротивленье...'];
+        let currentStep = 0;
+		let gameCompleted = false;
+
+        function generateRandomChars(length) {
+            const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            return Array.from({length}, () => 
+                chars[Math.floor(Math.random() * chars.length)]).join('');
+        }
+
+        function createMarqueeContent() {
+            const marquee = document.getElementById('marquee');
+            marquee.innerHTML = '';
+			
+			  if (gameCompleted) {
+                // Показываем поздравление в бегущей строке
+                const congrats = document.createElement('span');
+                congrats.className = 'congrats';
+                congrats.textContent = 'Многие уже догадываются, что Шекспира никогда не существовало, а все его произведения написаны бесконечным количеством обезьян за полчаса до дедлайна.';
+                marquee.appendChild(congrats);
+                return;
+            }
+            
+            const elements = [...correctOrder.map(word => ({
+                type: 'word',
+                value: word
+            }))];
+            
+            for(let i = 0; i < 18; i++) {
+                elements.push({
+                    type: 'random',
+                    value: generateRandomChars(6)
+                });
+            }
+
+            const shuffled = [...elements];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+
+            const doubleElements = [...shuffled, ...shuffled];
+            
+            doubleElements.forEach(item => {
+                const span = document.createElement('span');
+                if(item.type === 'word') {
+                    span.className = 'clickable';
+                    span.textContent = item.value;
+                    span.onclick = () => handleWordClick(item.value);
+                } else {
+                    span.textContent = item.value;
+                    span.style.margin = "0 5px";
+                }
+                marquee.appendChild(span);
+            });
+        }
+
+        function handleWordClick(clickedWord) {
+            const resultDiv = document.getElementById('result');
+            
+            if(clickedWord === correctOrder[currentStep]) {
+                currentStep++;
+                resultDiv.textContent += (resultDiv.textContent ? ' ' : '') + clickedWord;
+                
+                if(currentStep === correctOrder.length) {
+                    currentStep = 0;
+                    gameCompleted = true;
+                    createMarqueeContent();
+                }
+            } else {
+                currentStep = 0;
+                resultDiv.textContent = '';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', createMarqueeContent);
+    </script>
+</body>
+</html>
